@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module SolidusSitemap::SolidusDefaults
-  include Spree::Core::Engine.routes.url_helpers
+  # include Spree::Core::Engine.routes.url_helpers
+  include Rails.application.routes.url_helpers # Use application's own routes as solidus_frontend is now removed
   include Spree::BaseHelper # for meta_data
 
   def default_url_options
-    { host: SitemapGenerator::Sitemap.default_host }
+    { host: SitemapGenerator::Sitemap.default_host, locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 
   def add_login(options = {})
