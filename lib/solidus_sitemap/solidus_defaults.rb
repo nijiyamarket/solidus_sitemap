@@ -6,7 +6,7 @@ module SolidusSitemap::SolidusDefaults
   include Spree::BaseHelper # for meta_data
 
   def default_url_options
-    { host: SitemapGenerator::Sitemap.default_host }
+    { host: SitemapGenerator::Sitemap.default_host, locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 
   def add_login(options = {})
